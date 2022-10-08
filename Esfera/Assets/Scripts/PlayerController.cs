@@ -27,12 +27,29 @@ public class PlayerController : MonoBehaviour
         [SerializeField]
         TextMeshProUGUI labelTimer;
 
+    //COINS cosas
+
+        //Valor de COIN inicial
+        [SerializeField]
+        public int coinsObtain = 0;
+
+        //Texto con el contador de COINS
+        [SerializeField]
+        TextMeshProUGUI labelCoins;
+
+        //PARTICLES de EXPLOSIÓN 
+        [SerializeField]
+        GameObject prefabsParticles;
+
     //GAME OVER cosas
 
-    //Texto GAME OVER
+        //Texto GAME OVER LOST
         [SerializeField]
-        GameObject screemGameOver;
-        
+        GameObject screemGameOverLost;
+
+        //Texto GAME OVER WIN   
+        [SerializeField]
+        GameObject screemGameOverWin;
 
 
 
@@ -57,7 +74,38 @@ public class PlayerController : MonoBehaviour
             {
                 timer = 0.0f;
                 this.enabled = false;
-                screemGameOver.SetActive(true);
+                screemGameOverLost.SetActive(true);
+            }
+
+        //COINS cosas
+
+            //Texto con contador de COINS
+            labelCoins.text = coinsObtain.ToString("00") + "/10";
+
+            //Acabar juego si se conseguen todas las monedas
+            if (coinsObtain == 10)
+            {
+                this.enabled = false;
+                screemGameOverWin.SetActive(true);
             }
     }
+
+    //COINS cosas
+
+        //Detector de COINS
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.tag == "Coin")
+            {
+                //Desactivar COINS
+                other.gameObject.SetActive(false);
+
+                //Sumar una COIN
+                coinsObtain += 1;
+            
+                //Crear particulas de EXPLOSIÓN
+                Instantiate(prefabsParticles, other.transform.position, other.transform.rotation);
+        }
+        }
+
 }

@@ -20,8 +20,7 @@ public class CoinCollector : MonoBehaviour
         if (other.tag == "Coin")
         {
             other.gameObject.SetActive(false);
-            coinsObtain = coinsObtain + 1;
-            Debug.Log(coinsObtain);
+            coinsObtain += 1;
         }
     }
 

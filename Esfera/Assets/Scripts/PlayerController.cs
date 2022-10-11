@@ -105,7 +105,7 @@ public class PlayerController : MonoBehaviour
             
                 //Crear particulas de EXPLOSIÓN
                 Instantiate(prefabsParticles, other.transform.position, other.transform.rotation);
-        }
+            }
         }
 
 }

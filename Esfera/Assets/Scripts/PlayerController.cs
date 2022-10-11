@@ -83,7 +83,7 @@ public class PlayerController : MonoBehaviour
             labelCoins.text = coinsObtain.ToString("00") + "/10";
 
             //Acabar juego si se conseguen todas las monedas
-            if (coinsObtain == 10)
+            if (coinsObtain == 30)
             {
                 this.enabled = false;
                 screemGameOverWin.SetActive(true);

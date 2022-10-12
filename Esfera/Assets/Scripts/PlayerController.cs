@@ -6,6 +6,7 @@ using TMPro;
 public class PlayerController : MonoBehaviour
 {
     //IMPULSO PENDIENTE POR HACER :(
+        Rigidbody body;
 
     //MOVEMENT cosas
 
@@ -64,17 +65,25 @@ public class PlayerController : MonoBehaviour
         GameObject screemTimeInGame;
 
 
+    private void Start()
+    {
+        body = GetComponent<Rigidbody>();
+    }
 
-    void Update()
+
+    private void FixedUpdate()
     {
         //MOVEMENT cosas
 
-            //Valor de Movimiento en el Mando/Teclado
-            direction.x = Input.GetAxis("Horizontal") * Time.deltaTime * impulse;
-            direction.z = Input.GetAxis("Vertical") * Time.deltaTime * impulse;
-            transform.Translate(direction);
+        //Valor de Movimiento en el Mando/Teclado
+        direction.x = Input.GetAxis("Horizontal") * Time.deltaTime * impulse;
+        direction.z = Input.GetAxis("Vertical") * Time.deltaTime * impulse;
+        transform.Translate(direction);
+        body.AddForce(-direction, ForceMode.Impulse);
+    }
 
-
+    void Update()
+    {
         //TIME cosas
 
             //Sumar tiempo jugado a la partida

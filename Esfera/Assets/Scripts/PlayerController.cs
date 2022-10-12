@@ -21,11 +21,15 @@ public class PlayerController : MonoBehaviour
 
         //TIME jugado
         [SerializeField]
-        float timer = 60.0f;
+        float timePlayed = 0.0f;
 
-        //Texto TIMER
+        //Texto TIMEPLAYED
         [SerializeField]
-        TextMeshProUGUI labelTimer;
+        TextMeshProUGUI labelTimePlayed;
+
+        //Texto TIMEPLAYED resultado
+        [SerializeField]
+        TextMeshProUGUI labelTimePlayedResult;
 
     //COINS cosas
 
@@ -37,19 +41,27 @@ public class PlayerController : MonoBehaviour
         [SerializeField]
         TextMeshProUGUI labelCoins;
 
+        //Texto con el contador de COINS total
+        [SerializeField]
+        TextMeshProUGUI labelCoinsResult;
+
         //PARTICLES de EXPLOSIÓN 
         [SerializeField]
         GameObject prefabsParticles;
 
     //GAME OVER cosas
 
-        //Texto GAME OVER LOST
-        [SerializeField]
-        GameObject screemGameOverLost;
-
         //Texto GAME OVER WIN   
         [SerializeField]
         GameObject screemGameOverWin;
+        
+        //Canvas Texto TIME in game
+        [SerializeField]
+        GameObject screemCoinsInGame;
+
+        //Canvas Texto COINS in game
+        [SerializeField]
+        GameObject screemTimeInGame;
 
 
 
@@ -65,28 +77,25 @@ public class PlayerController : MonoBehaviour
 
         //TIME cosas
 
-            //Restar tiempo transcurrido de partida
-            timer -= 1f * Time.deltaTime;
-            labelTimer.text = timer.ToString("00.0");
-
-            //Acabar juego si se acaba el tiempo
-            if (timer <= 0.0f)
-            {
-                timer = 0.0f;
-                this.enabled = false;
-                screemGameOverLost.SetActive(true);
-            }
+            //Sumar tiempo jugado a la partida
+            timePlayed += 1 * Time.deltaTime;
+            labelTimePlayed.text = timePlayed.ToString("00.0");
+            labelTimePlayedResult.text = timePlayed.ToString("00.0");
 
         //COINS cosas
 
             //Texto con contador de COINS
-            labelCoins.text = coinsObtain.ToString("00") + "/10";
+            labelCoins.text = coinsObtain.ToString("00") + "/30";
+            labelCoinsResult.text = coinsObtain.ToString("00") + "/30";
 
             //Acabar juego si se conseguen todas las monedas
             if (coinsObtain == 30)
             {
                 this.enabled = false;
                 screemGameOverWin.SetActive(true);
+                screemCoinsInGame.SetActive(false);
+                screemTimeInGame.SetActive(false);
+                    
             }
     }
 

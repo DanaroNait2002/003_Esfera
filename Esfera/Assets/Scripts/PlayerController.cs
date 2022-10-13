@@ -5,7 +5,7 @@ using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
-    //IMPULSO PENDIENTE POR HACER :(
+    //IMPULSO cosas
         Rigidbody body;
 
     //MOVEMENT cosas
@@ -71,8 +71,9 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    private void FixedUpdate()
+    void Update()
     {
+
         //MOVEMENT cosas
 
         //Valor de Movimiento en el Mando/Teclado
@@ -80,14 +81,11 @@ public class PlayerController : MonoBehaviour
         direction.z = Input.GetAxis("Vertical") * Time.deltaTime * impulse;
         transform.Translate(direction);
         body.AddForce(-direction, ForceMode.Impulse);
-    }
 
-    void Update()
-    {
         //TIME cosas
 
-            //Sumar tiempo jugado a la partida
-            timePlayed += 1 * Time.deltaTime;
+        //Sumar tiempo jugado a la partida
+        timePlayed += 1 * Time.deltaTime;
             labelTimePlayed.text = timePlayed.ToString("00.0");
             labelTimePlayedResult.text = timePlayed.ToString("00.0");
 

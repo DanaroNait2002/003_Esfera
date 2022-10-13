@@ -76,16 +76,16 @@ public class PlayerController : MonoBehaviour
 
         //MOVEMENT cosas
 
-        //Valor de Movimiento en el Mando/Teclado
-        direction.x = Input.GetAxis("Horizontal") * Time.deltaTime * impulse;
-        direction.z = Input.GetAxis("Vertical") * Time.deltaTime * impulse;
-        transform.Translate(direction);
-        body.AddForce(-direction, ForceMode.Impulse);
+            //Valor de Movimiento en el Mando/Teclado
+            direction.x = Input.GetAxis("Horizontal") * Time.deltaTime * impulse;
+            direction.z = Input.GetAxis("Vertical") * Time.deltaTime * impulse;
+            transform.Translate(direction);
+            body.AddForce(-direction, ForceMode.Impulse);
 
         //TIME cosas
 
         //Sumar tiempo jugado a la partida
-        timePlayed += 1 * Time.deltaTime;
+            timePlayed += 1 * Time.deltaTime;
             labelTimePlayed.text = timePlayed.ToString("00.0");
             labelTimePlayedResult.text = timePlayed.ToString("00.0");
 
@@ -124,4 +124,6 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+
+    //Las monedas se pueden contar al colisionar
 }
